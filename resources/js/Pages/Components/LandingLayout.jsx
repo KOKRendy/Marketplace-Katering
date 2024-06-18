@@ -5,6 +5,7 @@ import { IoLogOutOutline } from "react-icons/io5";
 import { PiCookingPotLight } from "react-icons/pi";
 import { TbLogin } from "react-icons/tb";
 import { rupiah } from "../../utils/rupiah";
+import { TbInvoice } from "react-icons/tb";
 
 export default function LandingLayout({ auth, children }) {
     const [cartDropdown, setCartDropdown] = useState(false);
@@ -82,6 +83,11 @@ export default function LandingLayout({ auth, children }) {
                                     </div>
                                 )}
                             </div>
+                            <Link href="/invoice">
+                                <button className="border p-2 rounded-full border-black">
+                                    <TbInvoice size={25} />
+                                </button>
+                            </Link>
                             <Link href="/logout">
                                 <button className="border p-2 rounded-full border-black">
                                     <IoLogOutOutline size={25} />

@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
@@ -13,6 +14,10 @@ Route::controller(HomeController::class)->group(function () {
 
 Route::controller(SearchController::class)->group(function () {
     Route::get('/search', 'index')->name('search.index');
+});
+
+Route::controller(InvoiceController::class)->group(function () {
+    Route::get('/invoice', 'index')->name('invoice.index');
 });
 
 Route::get('/merchant', function () {
