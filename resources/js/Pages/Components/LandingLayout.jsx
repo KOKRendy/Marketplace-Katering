@@ -15,7 +15,7 @@ export default function LandingLayout({ auth, children }) {
             currency: 'IDR',
             minimumFractionDigits: 0,
         });
-    
+
         return formatter.format(amount);
     }
 
@@ -81,6 +81,13 @@ export default function LandingLayout({ auth, children }) {
                                                 </div>
                                             ))
                                         )}
+                                        <div className="border-t flex items-center justify-between p-5">
+                                            <Link className="w-full" href="/checkout">
+                                                <button className="border w-full p-2 rounded-md bg-black text-white">
+                                                    Checkout
+                                                </button>
+                                            </Link>
+                                        </div>
                                     </div>
                                 )}
                             </div>

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -22,6 +23,10 @@ Route::get('/menus', function () {
 
 Route::controller(CartController::class)->middleware('auth')->group(function () {
     Route::post('cart/store', 'store')->name('cart.store');
+});
+
+Route::controller(OrderController::class)->middleware('auth')->group(function () {
+    Route::get('/checkout', 'checkout')->name('checkout');
 });
 
 Route::controller(AuthController::class)->group(function () {
