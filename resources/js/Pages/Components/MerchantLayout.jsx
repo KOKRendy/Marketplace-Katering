@@ -8,7 +8,7 @@ import { LuLogOut } from "react-icons/lu";
 export default function MerchantLayout({ children }) {
     return (
         <main style={{fontFamily: 'MyFont'}}>
-            <div className="fixed h-screen w-[70px] border-r flex flex-col justify-between">
+            <div className="fixed bg-white h-screen w-[70px] border-r flex flex-col justify-between">
                 <div>
                     <div className="flex justify-center items-center py-5">
                         <img className="object-cover h-[50px] w-[50px] rounded-full border" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPSX6rnIejKF6jwH56EVGfSiimk09IYi1JAIYmSIf4Z__hXs-jP8RHKlbVc4GhSVyM_Ns&usqp=CAU" alt=".." />
@@ -35,7 +35,7 @@ export default function MerchantLayout({ children }) {
                 </div>
             </div>
 
-            <section className="pl-[70px] pt-[50px]">
+            <section className="py-[50px] pl-[110px] pr-[40px] bg-gray-50 min-h-screen">
                 {children}
             </section>
         </main>

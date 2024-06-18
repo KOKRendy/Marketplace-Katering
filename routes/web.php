@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\MenuController;
 use App\Http\Controllers\MerchantController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\SearchController;
@@ -21,8 +22,14 @@ Route::controller(InvoiceController::class)->group(function () {
     Route::get('/invoice', 'index')->name('invoice.index');
 });
 
-Route::controller(MerchantController::class)->middleware(['auth', 'role:merchant'])->group(function () {
-    Route::get('/merchant', 'index')->name('merchant.index');
+Route::middleware(['auth', 'role:merchant'])->group(function () {
+    Route::controller(MerchantController::class)->group(function () {
+        Route::get('/merchant', 'index')->name('merchant.index');
+    });
+
+    Route::controller(MenuController::class)->group(function () {
+        Route::get('/menu', 'index')->name('menu.index');
+    });
 });
 
 Route::controller(CartController::class)->middleware('auth')->group(function () {

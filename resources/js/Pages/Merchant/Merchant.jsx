@@ -4,10 +4,10 @@ import MerchantLayout from "../Components/MerchantLayout";
 export default function Merchant({ orders, overview }) {
     return (
         <MerchantLayout>
-            <div className="px-10 mb-10">
+            <div className="mb-10">
                 <h1 className="text-2xl font-bold">Overview</h1>
             </div>
-            <div className="grid grid-cols-4 gap-2 text-center px-10 mb-10">
+            <div className="grid grid-cols-4 gap-2 text-center mb-10">
                 <div className="border p-5 rounded-md">
                     <h5 className="text-gray-400">Total Menu</h5>
                     <h1 className="text-xl">{overview.total_menu} Menu</h1>
@@ -26,7 +26,7 @@ export default function Merchant({ orders, overview }) {
                 </div>
             </div>
 
-            <div className="px-10 grid grid-cols-3">
+            <div className="grid grid-cols-3">
                 {orders.map(data => (
                     <div key={data.id} className="border">
                         <h5>Id</h5>
