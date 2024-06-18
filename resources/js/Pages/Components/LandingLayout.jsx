@@ -13,9 +13,13 @@ export default function LandingLayout({ auth, children }) {
 
     useEffect(() => {
         let total = 0;
-        auth.cart.forEach(data => {
-            total += data.menu.harga * data.quantity;
-        });
+
+        if (auth.cart) {
+            auth.cart.forEach(data => {
+                total += data.menu.harga * data.quantity;
+            });
+        }
+        
         setTotalHarga(total);
     }, [auth.cart]);
 

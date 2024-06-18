@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\MerchantController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
@@ -20,12 +21,8 @@ Route::controller(InvoiceController::class)->group(function () {
     Route::get('/invoice', 'index')->name('invoice.index');
 });
 
-Route::get('/merchant', function () {
-    return inertia('Merchant/Merchant');
-});
-
-Route::get('/menus', function () {
-    return inertia('Merchant/Menu');
+Route::controller(MerchantController::class)->middleware(['auth', 'role:merchant'])->group(function () {
+    Route::get('/merchant', 'index')->name('merchant.index');
 });
 
 Route::controller(CartController::class)->middleware('auth')->group(function () {

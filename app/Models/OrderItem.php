@@ -13,6 +13,7 @@ class OrderItem extends Model
         'orders_id',
         'nama_menu',
         'harga',
+        'keuntungan',
         'quantity',
     ];
 

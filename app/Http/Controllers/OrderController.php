@@ -19,31 +19,38 @@ class OrderController extends Controller
 
             $carts = Cart::with('menu')->where('user_id', $user->id)->get();
 
-            $totalHarga = 0;
+            $groupedByMerchant = $carts->groupBy(function ($item) {
+                return $item->menu->merchants_id;
+            });
 
-            foreach ($carts as $cart) {
-                $totalHarga += $cart->menu->harga * $cart->quantity;
-            }
+            foreach ($groupedByMerchant as $merchantId => $items) {
 
+                $totalPembelian = $items->sum(function($item) {
+                    return $item->menu->harga * $item->quantity;
+                });
 
-            $order = Order::create([
-                'user_id' => $user->id,
-                'total_pembelian' => $totalHarga,
-                'status_pembelian' => 'Pending',
-            ]);
-
-            foreach ($carts as $cart) {
-                OrderItem::create([
-                    'orders_id' => $order->id,
-                    'nama_menu' => $cart->menu->nama_menu,
-                    'harga' => $cart->menu->harga,
-                    'quantity' => $cart->quantity,
+                $order = Order::create([
+                    'merchants_id' => $merchantId,
+                    'user_id' => $user->id,
+                    'total_pembelian' => $totalPembelian,
                 ]);
-            }
 
-            Cart::where('user_id', $user->id)->delete();
+                foreach ($items as $item) {
+                    OrderItem::create([
+                        'orders_id' => $order->id,
+                        'nama_menu' => $item->menu->nama_menu,
+                        'harga' => $item->menu->harga,
+                        'keuntungan' => $item->menu->keuntungan,
+                        'quantity' => $item->quantity,
+                    ]);
+
+                    $item->delete();
+                }
+            }
 
             DB::commit();
+
+            return back();
         } catch (\Exception $e) {
             DB::rollBack();
             Log::emergency($e->getMessage());

@@ -127,6 +127,7 @@ class AuthController extends Controller
             Auth::login($user);
 
             Merchant::create([
+                'user_id' => $user->id,
                 'nama_perusahaan' => $request->nama_perusahaan,
             ]);
 
