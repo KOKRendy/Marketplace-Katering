@@ -4,20 +4,11 @@ import { CiShoppingCart } from "react-icons/ci";
 import { IoLogOutOutline } from "react-icons/io5";
 import { PiCookingPotLight } from "react-icons/pi";
 import { TbLogin } from "react-icons/tb";
+import { rupiah } from "../../utils/rupiah";
 
 export default function LandingLayout({ auth, children }) {
     const [cartDropdown, setCartDropdown] = useState(false);
     const [totalHarga, setTotalHarga] = useState(0);
-
-    const formatMoney = (amount) => {
-        const formatter = new Intl.NumberFormat('id-ID', {
-            style: 'currency',
-            currency: 'IDR',
-            minimumFractionDigits: 0,
-        });
-
-        return formatter.format(amount);
-    }
 
     useEffect(() => {
         let total = 0;
@@ -64,7 +55,7 @@ export default function LandingLayout({ auth, children }) {
                                                 <div className="bg-gray-100 rounded-full h-[20px] w-[20px] text-sm text-center">{auth.cart.length}</div>
                                             </div>
                                             <div className="text-sm">
-                                                Total : {formatMoney(totalHarga)}
+                                                Total : {rupiah(totalHarga)}
                                             </div>
                                         </div>
                                         {auth.cart !== null && (
@@ -74,7 +65,7 @@ export default function LandingLayout({ auth, children }) {
                                                     <div>
                                                         <h2>{data.menu.nama_menu}</h2>
                                                         <div>
-                                                            <h2>Harga: Rp. {formatMoney(data.menu.harga)}</h2>
+                                                            <h2>Harga: Rp. {rupiah(data.menu.harga)}</h2>
                                                             <h2>Quatity: {data.quantity}</h2>
                                                         </div>
                                                     </div>

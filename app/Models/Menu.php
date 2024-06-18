@@ -21,6 +21,6 @@ class Menu extends Model
 
     public function merchant ()
     {
-        return $this->belongsTo(Merchant::class);
+        return $this->belongsTo(Merchant::class, 'merchants_id');
     }
 }
