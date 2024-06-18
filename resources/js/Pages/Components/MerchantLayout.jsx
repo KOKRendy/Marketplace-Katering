@@ -23,7 +23,7 @@ export default function MerchantLayout({ children }) {
                         <Link href="/order">
                             <LuClipboardList size={20} />
                         </Link>
-                        <Link href="/profil-perusahaan">
+                        <Link href="/profil-merchant">
                             <RiProfileLine size={20} />
                         </Link>
                     </div>

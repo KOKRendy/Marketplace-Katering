@@ -8,6 +8,7 @@ use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\MerchantController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ProfilMerchantController;
 use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
 
@@ -34,6 +35,11 @@ Route::middleware(['auth', 'role:merchant'])->group(function () {
 
     Route::controller(OrderController::class)->group(function () {
         Route::get('/order', 'index')->name('order.index');
+    });
+
+    Route::controller(ProfilMerchantController::class)->group(function () {
+        Route::get('/profil-merchant', 'index')->name('profil.merchant.index');
+        Route::post('/profil-merchant/update', 'update')->name('profil.merchan.update');
     });
 });
 
