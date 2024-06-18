@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -19,6 +20,10 @@ Route::get('/menus', function () {
     return inertia('Merchant/Menu');
 });
 
+Route::controller(CartController::class)->middleware('auth')->group(function () {
+    Route::post('cart/store', 'store')->name('cart.store');
+});
+
 Route::controller(AuthController::class)->group(function () {
     Route::prefix('login')->group(function () {
         Route::get('/', 'loginIndex')->name('login.index');
@@ -34,4 +39,6 @@ Route::controller(AuthController::class)->group(function () {
         Route::get('/', 'registerMerchantIndex')->name('registerMerchant.index');
         Route::post('/store', 'registerMerchantStore')->name('registerMerchant.store');
     });
+
+    Route::get('/logout', 'logout');
 });

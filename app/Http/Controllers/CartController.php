@@ -33,4 +33,20 @@ class CartController extends Controller
             return back();
         }
     }
+
+    public function delete($cartId)
+    {
+        try {
+            if (!$cartId) {
+                return back();
+            }
+
+            Cart::where('id', $cartId)->delete();
+
+            return back();
+        } catch (\Exception $e) {
+            Log::emergency($e->getMessage());
+            return back();
+        }
+    }
 }

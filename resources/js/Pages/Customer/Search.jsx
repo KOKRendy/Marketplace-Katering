@@ -1,9 +1,9 @@
 import LandingLayout from "../Components/LandingLayout";
 import ProductCard from "../Components/ProductCard";
 
-export default function Search() {
+export default function Search({ auth }) {
     return (
-        <LandingLayout>
+        <LandingLayout auth={auth}>
             <div>
                 <div className="mb-10 space-y-5" style={{ fontFamily: 'MyFont' }}>
                     <h5 className="text-4xl font-bold text-stone-700 text-center">Search</h5>

@@ -1,9 +1,9 @@
 import LandingLayout from "../Components/LandingLayout";
 import ProductCard from "../Components/ProductCard";
 
-export default function Home() {
+export default function Home({ auth }) {
     return (
-        <LandingLayout>
+        <LandingLayout auth={auth}>
             <h1 style={{ fontFamily: 'MyFont' }} className="text-4xl font-bold text-stone-700 mb-10">
                 Pesan Catering Anda
             </h1>
