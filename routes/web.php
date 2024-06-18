@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\MenuController;
@@ -30,13 +31,17 @@ Route::middleware(['auth', 'role:merchant'])->group(function () {
     Route::controller(MenuController::class)->group(function () {
         Route::get('/menu', 'index')->name('menu.index');
     });
+
+    Route::controller(OrderController::class)->group(function () {
+        Route::get('/order', 'index')->name('order.index');
+    });
 });
 
 Route::controller(CartController::class)->middleware('auth')->group(function () {
     Route::post('cart/store', 'store')->name('cart.store');
 });
 
-Route::controller(OrderController::class)->middleware('auth')->group(function () {
+Route::controller(CheckoutController::class)->middleware(['auth', 'role:customer'])->group(function () {
     Route::get('/checkout', 'checkout')->name('checkout');
 });
 
