@@ -1,19 +1,32 @@
-import { Head, Link } from "@inertiajs/react";
+import { Head, Link, useForm } from "@inertiajs/react";
 import FormInput from "../Components/FormInput";
 import PrimaryButton from "../Components/PrimartButton";
 
-export default function Login() {
+export default function Register() {
+
+    const {data, setData, post, errors} = useForm({
+        name: '',
+        email: '',
+        password: '',
+    });
+
+    const submit = (e) => {
+        e.preventDefault();
+
+        post('/register/store');
+    };
+
     return (
         <main className="h-screen bg-[#fafbfe]">
             <Head title="Register" />
 
             <div className="grid md:grid-cols-2 grid-cols-1 h-full">
                 <section className="flex items-center bg-white">
-                    <form className="w-full md:px-[100px] px-[20px]">
+                    <form onSubmit={submit} className="w-full md:px-[100px] px-[20px]">
                         <h1 className="text-xl font-bold mb-10 text-center">Marketplace Katering - Register to Continue</h1>
-                        <FormInput label="Name" />
-                        <FormInput label="Email" />
-                        <FormInput label="Password" type="password" />
+                        <FormInput value={data.name} onChange={(e) => setData('name', e.target.value)} errors={errors.name} label="Name" />
+                        <FormInput value={data.email} onChange={(e) => setData('email', e.target.value)} errors={errors.email} label="Email" />
+                        <FormInput value={data.password} onChange={(e) => setData('password', e.target.value)} errors={errors.password} label="Password" type="password" />
                         <PrimaryButton type="submit" className="w-full">
                             <h1 className="w-full">Register</h1>
                         </PrimaryButton>
