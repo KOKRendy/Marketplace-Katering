@@ -61,7 +61,7 @@ class ProfilMerchantController extends Controller
 
                 $imageName = time() . '.' . $request->logo_perusahaan->extension();
 
-                $pathname = 'logo-perusahaan';
+                $pathname = 'uploads/logo-perusahaan';
 
                 $request->logo_perusahaan->move(public_path($pathname), $imageName);
 

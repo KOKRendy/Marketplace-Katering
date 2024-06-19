@@ -15,7 +15,9 @@ class MenuController extends Controller
         try {
             $user = auth()->user();
 
-            $menus = Menu::where('merchants_id', $user->id)->get();
+            $merchant = Merchant::where('user_id', $user->id)->first();
+
+            $menus = Menu::where('merchants_id', $merchant->id)->get();
 
             return inertia('Merchant/Menu', [
                 'menus' => $menus,
@@ -58,7 +60,7 @@ class MenuController extends Controller
 
             $imageName = time() . '.' . $request->foto->extension();
 
-            $pathname = 'menu-image';
+            $pathname = 'uploads/menu-image';
 
             $request->foto->move(public_path($pathname), $imageName);
 
@@ -123,7 +125,7 @@ class MenuController extends Controller
 
                 $imageName = time() . '.' . $request->foto->extension();
 
-                $pathname = 'menu-image';
+                $pathname = 'uploads/menu-image';
 
                 $request->foto->move(public_path($pathname), $imageName);
 
