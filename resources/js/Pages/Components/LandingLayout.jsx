@@ -71,7 +71,7 @@ export default function LandingLayout({ auth, children }) {
                                         {auth.cart !== null && (
                                             auth.cart.map(data => (
                                                 <div key={data.id} className="p-5" style={{ fontFamily: 'MyFont' }}>
-                                                    <img className="aspect-square object-cover" src="https://blog.sribu.com/wp-content/uploads/2023/05/contoh-desain-produk-makanan.webp" alt=".." />
+                                                    <img className="aspect-square object-cover" src={data.menu.foto} alt=".." />
                                                     <div>
                                                         <h2>{data.menu.nama_menu}</h2>
                                                         <div>

@@ -2,10 +2,19 @@ import { IoMdStar } from "react-icons/io";
 import { IoMdStarOutline } from "react-icons/io";
 import { MdAddShoppingCart } from "react-icons/md";
 import { rupiah } from "../../utils/rupiah";
+import { router } from "@inertiajs/react";
 
 export default function ProductCard({ data }) {
+
+    const addToCart = () => {
+        router.post('cart/store', {
+            menus_id: data.id,
+            quantity: 1,
+        });
+    };
+
     return (
-        <div>
+        <button onClick={addToCart}>
             <div className="p-[35px] border border-black">
                 <div className="relative">
                     <div className="hover:bg-black/50 opacity-0 hover:opacity-100 absolute top-0 bottom-0 right-0 left-0 transition-all duration-500 flex items-end w-full">
@@ -28,6 +37,6 @@ export default function ProductCard({ data }) {
                 </div>
                 <h5 style={{ fontFamily: 'MyFont' }} className="mt-3">{rupiah(data.harga)}/Pcs</h5>
             </div>
-        </div>
+        </button>
     )
 }
