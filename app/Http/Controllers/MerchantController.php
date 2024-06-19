@@ -15,13 +15,6 @@ class MerchantController extends Controller
         try {
             $merchant = Merchant::where('user_id', auth()->id())->first();
 
-            $orders = Order::with(['user', 'items'])
-                ->whereHas('items', function ($query) use ($merchant) {
-                    $query->where('merchants_id', $merchant->id);
-                })
-                ->latest()
-                ->get();
-
             $totalMenu = Menu::where('merchants_id', $merchant->id)->count();
 
             $orders = Order::with('items')->where('merchants_id', $merchant->id)->get();
