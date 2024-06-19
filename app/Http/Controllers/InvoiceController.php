@@ -12,7 +12,7 @@ class InvoiceController extends Controller
         try {
             $user = auth()->user();
 
-            $order = Order::latest()->with(['items', 'user'])->where('user_id', $user->id)->where('status_pembelian', 'Pending')->first();
+            $order = Order::latest()->with(['items', 'user'])->where('user_id', $user->id)->first();
 
             return inertia('Customer/Invoice', [
                 'order' => $order,
