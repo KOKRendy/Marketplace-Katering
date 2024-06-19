@@ -35,7 +35,7 @@ export default function Order({ orders }) {
                                 </td>
                             </tr>
                         ))}
-                        {orders.length === 0 && <td colSpan={5} className="text-center py-5">Tidak ada menu</td>}
+                        {orders.length === 0 && <td colSpan={5} className="text-center py-5">Tidak ada order</td>}
                     </tbody>
                 </table>
             </div>
