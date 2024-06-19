@@ -23,4 +23,9 @@ class Menu extends Model
     {
         return $this->belongsTo(Merchant::class, 'merchants_id');
     }
+
+    public function ratings()
+    {
+        return $this->hasMany(MenuRating::class);
+    }
 }

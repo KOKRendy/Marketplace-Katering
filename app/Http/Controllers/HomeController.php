@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Menu;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
 class HomeController extends Controller
@@ -11,7 +10,7 @@ class HomeController extends Controller
     public function index()
     {
         try {
-            $menus = Menu::with('merchant.user')->latest()->get();
+            $menus = Menu::with('merchant.user')->withAvg('ratings', 'rating')->latest()->get();
 
             return inertia('Customer/Home', [
                 'menus' => $menus,

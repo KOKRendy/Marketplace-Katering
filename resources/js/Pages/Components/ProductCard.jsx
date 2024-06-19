@@ -3,8 +3,13 @@ import { IoMdStarOutline } from "react-icons/io";
 import { MdAddShoppingCart } from "react-icons/md";
 import { rupiah } from "../../utils/rupiah";
 import { router } from "@inertiajs/react";
+import { useEffect } from "react";
 
 export default function ProductCard({ data }) {
+
+    const starTrue = Math.floor(data.ratings_avg_rating);
+    const starFalse = data.ratings_avg_rating % 1 !== 0;
+    const totalStars = 5;
 
     const addToCart = () => {
         router.post('cart/store', {
@@ -25,11 +30,15 @@ export default function ProductCard({ data }) {
                                 <h2 style={{ fontFamily: 'MyFont' }} className="text-white w-full text-start">{data.merchant.nama_perusahaan}</h2>
                             </div>
                             <div className="flex items-center">
-                                <IoMdStar className="text-white" size={20} />
-                                <IoMdStar className="text-white" size={20} />
-                                <IoMdStar className="text-white" size={20} />
-                                <IoMdStarOutline className="text-white" size={20} />
-                                <IoMdStarOutline className="text-white" size={20} />
+                                {[...Array(totalStars)].map((_, index) => {
+                                    if (index < starTrue) {
+                                        return <IoMdStar key={index} className="text-white" size={20} />;
+                                    } else if (index === starTrue && starFalse) {
+                                        return <IoMdStar key={index} className="text-white half-filled" size={20} />;
+                                    } else {
+                                        return <IoMdStarOutline key={index} className="text-white" size={20} />;
+                                    }
+                                })}
                             </div>
                         </div>
                     </div>

@@ -12,6 +12,7 @@ class SearchController extends Controller
     {
         try {
             $menus = Menu::with('merchant')
+                ->withAvg('ratings', 'rating')
                 ->when($request->input('search'), function ($query, $search) {
                     $query
                         ->where('nama_menu', 'like', '%' . $search . '%')
