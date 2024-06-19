@@ -1,24 +1,25 @@
-import { useForm } from "@inertiajs/react";
-import MerchantLayout from "../Components/MerchantLayout";
-import FormInput from "../Components/FormInput";
-import { rupiah } from "../../utils/rupiah";
 import { RiImageAddLine } from "react-icons/ri";
+import FormInput from "../Components/FormInput";
+import MerchantLayout from "../Components/MerchantLayout";
+import { useForm } from "@inertiajs/react";
+import { rupiah } from "../../utils/rupiah";
 
-export default function FormMenu() {
+export default function FormEditMenu({ menu }) {
 
     const { data, setData, post, errors } = useForm({
-        nama_menu: '',
-        jenis_makanan: '',
-        foto: '',
-        harga: 0,
-        keuntungan: 0,
-        deskripsi: '',
+        nama_menu: menu.nama_menu,
+        jenis_makanan: menu.jenis_makanan,
+        foto: menu.foto,
+        harga: menu.harga,
+        keuntungan: menu.keuntungan,
+        deskripsi: menu.deskripsi,
+        menu_id: menu.id,
     });
 
     const submit = (e) => {
         e.preventDefault();
 
-        post('/buat-menu/store');
+        post('/update-menu/store', { preserveState: () => true });
     };
 
     return (
@@ -26,7 +27,7 @@ export default function FormMenu() {
             <div className="flex justify-center">
                 <div className="border w-[60%] bg-white p-5">
                     <div className="mb-10">
-                        <h1 className="text-2xl text-center">Buat Menu Baru</h1>
+                        <h1 className="text-2xl text-center">Edit Menu</h1>
                     </div>
                     <form onSubmit={submit}>
                         <div className="grid grid-cols-2 gap-5 mb-10">
@@ -45,11 +46,11 @@ export default function FormMenu() {
                                 {data.foto ? (
                                     typeof data.foto === 'string' ? (
                                         <label htmlFor="foto">
-                                            <img src={data.foto} alt="" />
+                                            <img src={`/${data.foto}`} alt=".." />
                                         </label>
                                     ) : (
                                         <label htmlFor="foto">
-                                            <img src={URL.createObjectURL(data.foto)} alt="" />
+                                            <img src={URL.createObjectURL(data.foto)} alt=".." />
                                         </label>
                                     )
                                 ) : (

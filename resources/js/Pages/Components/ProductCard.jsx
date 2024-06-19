@@ -21,8 +21,8 @@ export default function ProductCard({ data }) {
                         <div className="border-b border-white w-full mb-10 mx-5 flex items-center justify-between">
                             <MdAddShoppingCart className="text-white absolute right-0 left-0 mr-auto ml-auto top-[50%]" size={30} />
                             <div>
-                                <h2 style={{ fontFamily: 'MyFont' }} className="text-white w-full font-bold text-xl">{data.nama_menu}</h2>
-                                <h2 style={{ fontFamily: 'MyFont' }} className="text-white w-full">{data.merchant.nama_perusahaan}</h2>
+                                <h2 style={{ fontFamily: 'MyFont' }} className="text-white w-full font-bold text-xl text-start">{data.nama_menu}</h2>
+                                <h2 style={{ fontFamily: 'MyFont' }} className="text-white w-full text-start">{data.merchant.nama_perusahaan}</h2>
                             </div>
                             <div className="flex items-center">
                                 <IoMdStar className="text-white" size={20} />

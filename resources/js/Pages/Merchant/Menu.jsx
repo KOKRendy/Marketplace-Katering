@@ -38,7 +38,9 @@ export default function Merchant({ menus }) {
                                 <td className="py-5 border-b text-sm">{rupiah(data.keuntungan)}</td>
                                 <td className="py-5 border-b text-sm">
                                     <div className="flex justify-center items-center gap-5">
-                                        <button className="px-5 py-1 border rounded-md">Edit</button>
+                                        <Link href={`/update-menu/${data.id}`}>
+                                            <button className="px-5 py-1 border rounded-md">Edit</button>
+                                        </Link>
                                         <button className="px-5 py-1 border rounded-md">Delete</button>
                                     </div>
                                 </td>

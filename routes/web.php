@@ -33,6 +33,8 @@ Route::middleware(['auth', 'role:merchant'])->group(function () {
         Route::get('/menu', 'index')->name('menu.index');
         Route::get('/buat-menu', 'menuCreateIndex')->name('menu.create.index');
         Route::post('/buat-menu/store', 'store')->name('menu.store');
+        Route::get('/update-menu/{menuId}', 'menuUpdateIndex')->name('menu.update.index');
+        Route::post('/update-menu/store', 'update')->name('menu.update.store');
     });
 
     Route::controller(OrderController::class)->group(function () {
