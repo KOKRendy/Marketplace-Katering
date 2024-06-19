@@ -1,11 +1,11 @@
 import { Link } from "@inertiajs/react";
 import { useEffect, useState } from "react";
 import { CiShoppingCart } from "react-icons/ci";
-import { IoLogOutOutline } from "react-icons/io5";
 import { PiCookingPotLight } from "react-icons/pi";
-import { TbLogin } from "react-icons/tb";
 import { rupiah } from "../../utils/rupiah";
-import { TbInvoice } from "react-icons/tb";
+import { CiLogout } from "react-icons/ci";
+import { CiLogin } from "react-icons/ci";
+import { LiaFileInvoiceSolid } from "react-icons/lia";
 
 export default function LandingLayout({ auth, children }) {
     const [cartDropdown, setCartDropdown] = useState(false);
@@ -94,19 +94,19 @@ export default function LandingLayout({ auth, children }) {
                             </div>
                             <Link href="/invoice">
                                 <button className="border p-2 rounded-full border-black">
-                                    <TbInvoice size={25} />
+                                    <LiaFileInvoiceSolid size={25} />
                                 </button>
                             </Link>
                             <Link href="/logout">
                                 <button className="border p-2 rounded-full border-black">
-                                    <IoLogOutOutline size={25} />
+                                    <CiLogout size={25} />
                                 </button>
                             </Link>
                         </div>
                     ) : (
                         <Link href="/login">
                             <button className="border p-2 rounded-full border-black">
-                                <TbLogin size={25} />
+                                <CiLogin size={25} />
                             </button>
                         </Link>
                     )}
