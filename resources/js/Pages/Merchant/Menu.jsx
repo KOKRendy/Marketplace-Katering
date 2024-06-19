@@ -30,7 +30,7 @@ export default function Merchant({ menus }) {
                             <tr key={data.id} className="text-center">
                                 <td className="py-5 border-b text-sm">Ayam</td>
                                 <td className="py-5 border-b text-sm flex justify-center">
-                                    <img className="h-[70px] w-[70px] object-cover" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2cmsdMRKidfQwCspjcpiTkxBfRqAGaeT9Bw&s" alt=".." />
+                                    <img className="h-[70px] w-[70px] object-cover" src={data.foto} alt=".." />
                                 </td>
                                 <td className="py-5 border-b text-sm">Makanan Berat</td>
                                 <td className="py-5 border-b text-sm">...</td>

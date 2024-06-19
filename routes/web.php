@@ -31,6 +31,8 @@ Route::middleware(['auth', 'role:merchant'])->group(function () {
 
     Route::controller(MenuController::class)->group(function () {
         Route::get('/menu', 'index')->name('menu.index');
+        Route::get('/buat-menu', 'menuCreateIndex')->name('menu.create.index');
+        Route::post('/buat-menu/store', 'store')->name('menu.store');
     });
 
     Route::controller(OrderController::class)->group(function () {
@@ -53,7 +55,7 @@ Route::controller(CheckoutController::class)->middleware(['auth', 'role:customer
 
 Route::controller(AuthController::class)->group(function () {
     Route::prefix('login')->group(function () {
-        Route::get('/', 'loginIndex')->name('login.index');
+        Route::get('/', 'loginIndex')->name('login');
         Route::post('/store', 'loginStore')->name('login.store');
     });
 

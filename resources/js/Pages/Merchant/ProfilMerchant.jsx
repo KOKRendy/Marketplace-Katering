@@ -64,5 +64,3 @@ export default function ProfilMerchant({ merchant }) {
         </MerchantLayout>
     )
 }
-
-// 'logo_perusahaan' => 'required|max:10240',
