@@ -26,17 +26,6 @@ export default function Merchant({ orders, overview, auth }) {
                     <h1 className="text-xl">{rupiah(overview.total_uang_keuntungan)}</h1>
                 </div>
             </div>
-
-            <div className="grid grid-cols-3">
-                {orders.map(data => (
-                    <div key={data.id} className="border">
-                        <h5>Id</h5>
-                        <h5>User</h5>
-                        <h5>Total Pembelian</h5>
-                        <h5>Status Pembelian</h5>
-                    </div>
-                ))}
-            </div>
         </MerchantLayout>
     )
 }

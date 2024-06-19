@@ -32,6 +32,7 @@ class CheckoutController extends Controller
                     'merchants_id' => $merchantId,
                     'user_id' => $user->id,
                     'total_pembelian' => $totalPembelian,
+                    'status_pembelian' => 'Pending',
                 ]);
 
                 foreach ($items as $item) {
