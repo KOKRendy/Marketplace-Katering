@@ -31,7 +31,7 @@ export default function ProfilMerchant({ merchant }) {
                             <FormInput value={data.kontak} onChange={(e) => setData('kontak', e.target.value)} errors={errors.kontak} label="Kontak" />
                             <div className="mb-5 col-span-2">
                                 <h5 className="mb-2">Deskripsi</h5>
-                                <textarea value={data.deskripsi} onChange={(e) => setData('deskripsi', e.target.value)} className="w-full outline-none border rounded-md p-2"></textarea>
+                                <textarea rows={5} value={data.deskripsi} onChange={(e) => setData('deskripsi', e.target.value)} className="w-full outline-none border rounded-md p-2"></textarea>
                                 <p className="text-rose-500 text-sm">{errors.deskripsi}</p>
                             </div>
                             <div className="col-span-2">

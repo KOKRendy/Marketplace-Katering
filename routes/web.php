@@ -39,6 +39,7 @@ Route::middleware(['auth', 'role:merchant'])->group(function () {
 
     Route::controller(OrderController::class)->group(function () {
         Route::get('/order', 'index')->name('order.index');
+        Route::post('/order/change-status', 'changeStatus')->name('order.change.statu');
     });
 
     Route::controller(ProfilMerchantController::class)->group(function () {

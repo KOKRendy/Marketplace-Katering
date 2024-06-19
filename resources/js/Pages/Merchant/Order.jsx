@@ -1,8 +1,13 @@
-import { Link } from "@inertiajs/react";
+import { Link, router } from "@inertiajs/react";
 import MerchantLayout from "../Components/MerchantLayout";
 import { rupiah } from "../../utils/rupiah";
+import Dropdown from "../Components/Dropdown";
 
 export default function Order({ orders }) {
+    const changeStatus = (status, order_id) => {
+        router.post('/order/change-status', {status: status, order_id: order_id}, {preserveState: () => true});
+    };
+
     return (
         <MerchantLayout>
             <div className="flex items-center justify-between mb-10">
@@ -23,14 +28,25 @@ export default function Order({ orders }) {
                     <tbody>
                         {orders.map(data => (
                             <tr key={data.id} className="text-center">
-                                <td className="py-5 border-b text-sm">Jamals</td>
-                                <td className="py-5 border-b text-sm">jamals@gmails.com</td>
-                                <td className="py-5 border-b text-sm">{rupiah(550000)}</td>
-                                <td className="py-5 border-b text-sm">Pending</td>
+                                <td className="py-5 border-b text-sm">{data.user.name}</td>
+                                <td className="py-5 border-b text-sm">{data.user.email}</td>
+                                <td className="py-5 border-b text-sm">{rupiah(data.total_pembelian)}</td>
+                                <td className="py-5 border-b text-sm">{data.status_pembelian}</td>
                                 <td className="py-5 border-b text-sm">
                                     <div className="flex justify-center items-center gap-5">
-                                        <button className="px-5 py-1 border rounded-md">Edit</button>
-                                        <button className="px-5 py-1 border rounded-md">Delete</button>
+                                        <Dropdown text="Edit">
+                                            <ul className="w-max rounded-md bg-white shadow-md">
+                                                <li>
+                                                    <button onClick={() => changeStatus('Dalam Proses Pembuatan', data.id)} className={`${data.status_pembelian === 'Dalam Proses Pembuatan' && 'bg-gray-100'} py-2 px-5 duration-500 hover:bg-gray-100 rounded-t-md w-full`} type="button">Dalam Proses Pembuatan</button>
+                                                </li>
+                                                <li>
+                                                    <button onClick={() => changeStatus('Dalam Pengiriman', data.id)} className={`${data.status_pembelian === 'Dalam Pengiriman' && 'bg-gray-100'} py-2 px-5 duration-500 hover:bg-gray-100 w-full`} type="button">Dalam Pengiriman</button>
+                                                </li>
+                                                <li>
+                                                    <button onClick={() => changeStatus('Pesanan Selesai', data.id)} className={`${data.status_pembelian === 'Pesanan Selesai' && 'bg-gray-100'} py-2 px-5 duration-500 hover:bg-gray-100 rounded-b-md w-full`} type="button">Pesanan Selesai</button>
+                                                </li>
+                                            </ul>
+                                        </Dropdown>
                                     </div>
                                 </td>
                             </tr>
