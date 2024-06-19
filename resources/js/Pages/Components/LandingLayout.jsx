@@ -44,6 +44,11 @@ export default function LandingLayout({ auth, children }) {
                                     Search
                                 </Link>
                             </li>
+                            <li>
+                                <Link href="/ulasan">
+                                    Ulasan
+                                </Link>
+                            </li>
                         </ul>
                     </div>
                     {auth.user ? (

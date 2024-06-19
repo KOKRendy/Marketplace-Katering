@@ -21,7 +21,8 @@ class SearchController extends Controller
                             $query->where('nama_perusahaan', 'like', '%' . $search . '%')
                                 ->orWhereHas('user', function ($query) use ($search) {
                                     $query->where('name', 'like', '%' . $search . '%');
-                                });
+                            })
+                            ->orWhere('alamat', 'like', '%' . $search . '%');
                         });
                 })
                 ->get();

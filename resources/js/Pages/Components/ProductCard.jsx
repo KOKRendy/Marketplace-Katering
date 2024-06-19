@@ -24,7 +24,7 @@ export default function ProductCard({ data }) {
                             </div>
                         </div>
                     </div>
-                    <img className="aspect-[4/5] object-cover" src="https://cdn.prod.website-files.com/6018a0179bd8f63d255da2c5/664e7dcb4e0e9e161b537243_DSCF6241-p-500.jpg" alt=".." />
+                    <img className="aspect-[4/5] object-cover" src={data.foto} alt=".." />
                 </div>
                 <h5 style={{ fontFamily: 'MyFont' }} className="mt-3">{rupiah(data.harga)}/Pcs</h5>
             </div>

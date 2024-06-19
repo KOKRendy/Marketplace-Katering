@@ -28,14 +28,14 @@ export default function Merchant({ menus }) {
                     <tbody>
                         {menus.map(data => (
                             <tr key={data.id} className="text-center">
-                                <td className="py-5 border-b text-sm">Ayam</td>
+                                <td className="py-5 border-b text-sm">{data.nama_menu}</td>
                                 <td className="py-5 border-b text-sm flex justify-center">
                                     <img className="h-[70px] w-[70px] object-cover" src={data.foto} alt=".." />
                                 </td>
-                                <td className="py-5 border-b text-sm">Makanan Berat</td>
+                                <td className="py-5 border-b text-sm">{data.jenis_makanan}</td>
                                 <td className="py-5 border-b text-sm">...</td>
-                                <td className="py-5 border-b text-sm">{rupiah(14000)}</td>
-                                <td className="py-5 border-b text-sm">{rupiah(4000)}</td>
+                                <td className="py-5 border-b text-sm">{rupiah(data.harga)}</td>
+                                <td className="py-5 border-b text-sm">{rupiah(data.keuntungan)}</td>
                                 <td className="py-5 border-b text-sm">
                                     <div className="flex justify-center items-center gap-5">
                                         <button className="px-5 py-1 border rounded-md">Edit</button>
