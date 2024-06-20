@@ -4,9 +4,10 @@ import PrimaryButton from "../Components/PrimartButton";
 
 export default function RegisterMerchant() {
 
-    const {data, setData, post, errors} = useForm({
+    const { data, setData, post, errors } = useForm({
         name: '',
         email: '',
+        phone_number: '62',
         password: '',
         nama_perusahaan: '',
     });
@@ -15,6 +16,21 @@ export default function RegisterMerchant() {
         e.preventDefault();
 
         post('/register-merchant/store');
+    };
+
+    const handleChangeNumber = (key, value) => {
+        const numericValue = value.replace(/\D/g, '');
+        if (numericValue.startsWith('62')) {
+            setData((prevData) => ({
+                ...prevData,
+                [key]: numericValue,
+            }));
+        } else {
+            setData((prevData) => ({
+                ...prevData,
+                [key]: '62',
+            }));
+        }
     };
 
     return (
@@ -27,6 +43,7 @@ export default function RegisterMerchant() {
                         <h1 className="text-xl font-bold mb-10 text-center">Marketplace Katering - Register Merchant</h1>
                         <FormInput value={data.name} onChange={(e) => setData('name', e.target.value)} errors={errors.name} label="Name" />
                         <FormInput value={data.email} onChange={(e) => setData('email', e.target.value)} errors={errors.email} label="Email" />
+                        <FormInput value={'+' + data.phone_number} onChange={(e) => handleChangeNumber('phone_number', e.target.value)} errors={errors.phone_number} label="Phone Number" />
                         <FormInput value={data.password} onChange={(e) => setData('password', e.target.value)} errors={errors.password} label="Password" type="password" />
                         <FormInput value={data.nama_perusahaan} onChange={(e) => setData('nama_perusahaan', e.target.value)} errors={errors.nama_perusahaan} label="Nama Perusahaan" />
                         <PrimaryButton type="submit" className="w-full">

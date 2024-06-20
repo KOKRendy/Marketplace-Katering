@@ -4,16 +4,32 @@ import PrimaryButton from "../Components/PrimartButton";
 
 export default function Register() {
 
-    const {data, setData, post, errors} = useForm({
+    const { data, setData, post, errors } = useForm({
         name: '',
         email: '',
         password: '',
+        phone_number: '62',
     });
 
     const submit = (e) => {
         e.preventDefault();
 
         post('/register/store');
+    };
+
+    const handleChangeNumber = (key, value) => {
+        const numericValue = value.replace(/\D/g, '');
+        if (numericValue.startsWith('62')) {
+            setData((prevData) => ({
+                ...prevData,
+                [key]: numericValue,
+            }));
+        } else {
+            setData((prevData) => ({
+                ...prevData,
+                [key]: '62',
+            }));
+        }
     };
 
     return (
@@ -27,11 +43,15 @@ export default function Register() {
                         <FormInput value={data.name} onChange={(e) => setData('name', e.target.value)} errors={errors.name} label="Name" />
                         <FormInput value={data.email} onChange={(e) => setData('email', e.target.value)} errors={errors.email} label="Email" />
                         <FormInput value={data.password} onChange={(e) => setData('password', e.target.value)} errors={errors.password} label="Password" type="password" />
+                        <FormInput value={'+' + data.phone_number} onChange={(e) => handleChangeNumber('phone_number', e.target.value)} errors={errors.phone_number} label="Nomor Telfon" />
                         <PrimaryButton type="submit" className="w-full">
                             <h1 className="w-full">Register</h1>
                         </PrimaryButton>
                         <div className="text-sm mt-5 text-center">
                             <p>Already have an account? <Link className="text-blue-400" href="/login">Sign in</Link></p>
+                        </div>
+                        <div className="text-sm mt-2 text-center">
+                            <p>Want to become a merchant? <Link className="text-blue-400" href="/register-merchant">Register As Merchant</Link></p>
                         </div>
                     </form>
                 </section>

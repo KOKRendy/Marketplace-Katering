@@ -44,13 +44,17 @@ export default function FormMenu() {
                                 <input type="file" id="foto" onChange={(e) => setData('foto', e.target.files[0])} hidden />
                                 {data.foto ? (
                                     typeof data.foto === 'string' ? (
-                                        <label htmlFor="foto">
-                                            <img src={data.foto} alt="" />
-                                        </label>
+                                        <div className="flex justify-center">
+                                            <label htmlFor="foto">
+                                                <img src={data.foto} alt="" />
+                                            </label>
+                                        </div>
                                     ) : (
-                                        <label htmlFor="foto">
-                                            <img src={URL.createObjectURL(data.foto)} alt="" />
-                                        </label>
+                                        <div className="flex justify-center">
+                                            <label htmlFor="foto">
+                                                <img src={URL.createObjectURL(data.foto)} alt="" />
+                                            </label>
+                                        </div>
                                     )
                                 ) : (
                                     <label htmlFor="foto">

@@ -71,6 +71,7 @@ class AuthController extends Controller
                 'name' => 'required',
                 'email' => 'required|email|unique:users,email',
                 'password' => 'required',
+                'phone_number' => 'required|min:8',
             ]);
 
             if ($validator->fails()) {
@@ -80,6 +81,7 @@ class AuthController extends Controller
             $user = User::create([
                 'name' => $request->name,
                 'email' => $request->email,
+                'phone_number' => $request->phone_number,
                 'password' => Hash::make($request->password),
                 'role' => 'customer',
             ]);
@@ -109,6 +111,7 @@ class AuthController extends Controller
             $validator = Validator::make($request->all(), [
                 'name' => 'required',
                 'email' => 'required|email|unique:users,email',
+                'phone_number' => 'required|unique:users,phone_number|min:8',
                 'password' => 'required',
                 'nama_perusahaan' => 'required',
             ]);
@@ -120,6 +123,7 @@ class AuthController extends Controller
             $user = User::create([
                 'name' => $request->name,
                 'email' => $request->email,
+                'phone_number' => $request->phone_number,
                 'password' => Hash::make($request->password),
                 'role' => 'merchant',
             ]);

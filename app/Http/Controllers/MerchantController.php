@@ -19,13 +19,19 @@ class MerchantController extends Controller
 
             $orders = Order::with('items')->where('merchants_id', $merchant->id)->get();
 
+            $totalUangKeuntungan = 0;
+
+            foreach ($orders as $order) {
+                foreach ($order->items as $item) {
+                    $totalUangKeuntungan += $item->keuntungan * $item->quantity;
+                }
+            }
+
             $overview = [
                 'total_menu' => $totalMenu,
                 'total_penjualan' => $orders->count(),
                 'total_uang_penjualan' => $orders->sum('total_pembelian'),
-                'total_uang_keuntungan' => $orders->sum(function ($item) {
-                    return $item->keuntungan * $item->quantity;
-                }),
+                'total_uang_keuntungan' => $totalUangKeuntungan,
             ];
 
             return inertia('Merchant/Merchant', [
