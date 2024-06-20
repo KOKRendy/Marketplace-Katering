@@ -3,7 +3,6 @@ import { IoMdStarOutline } from "react-icons/io";
 import { MdAddShoppingCart } from "react-icons/md";
 import { rupiah } from "../../utils/rupiah";
 import { router } from "@inertiajs/react";
-import { useEffect } from "react";
 
 export default function ProductCard({ data }) {
 
@@ -15,7 +14,7 @@ export default function ProductCard({ data }) {
         router.post('cart/store', {
             menus_id: data.id,
             quantity: 1,
-        });
+        }, { preserveState: () => true, preserveScroll: () => true });
     };
 
     return (

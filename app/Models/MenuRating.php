@@ -14,4 +14,14 @@ class MenuRating extends Model
         'user_id',
         'rating',
     ];
+
+    public function menu()
+    {
+        return $this->belongsTo(Menu::class, 'menu_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\MenuRatingController;
 use App\Http\Controllers\MerchantController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfilMerchantController;
@@ -22,6 +23,11 @@ Route::controller(SearchController::class)->group(function () {
 
 Route::controller(InvoiceController::class)->group(function () {
     Route::get('/invoice', 'index')->name('invoice.index');
+});
+
+Route::controller(MenuRatingController::class)->group(function () {
+    Route::get('/ulasan', 'index')->name('ulasan.index');
+    Route::post('/ulasan/store', 'store')->name('ulasan.store');
 });
 
 Route::middleware(['auth', 'role:merchant'])->group(function () {
